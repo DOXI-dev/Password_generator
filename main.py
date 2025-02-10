@@ -1,29 +1,33 @@
+import tkinter as tk
 import random
 import string
 
-print("Generez votre mot de passe. ")
+def random_password():
+    password_length = int(textbox.get())
+    password = "Result: "
+    characters = string.ascii_letters + string.digits + string.punctuation
 
-z = int(input("Combien de lettres minuscules doit-il avoir? "))
-y = int(input("Combien de lettres majuscules doit-il avoir? "))
-a = int(input("Combien de chiffres doit-il avoir? "))
-x = int(input("Combien de signes de ponctuation doit-il avoir? "))
+    for i in range(password_length):
+         password += random.choice(characters)
 
-mot_de_passe = ""
+    result.config(text=str(password))
 
-for i in range(z):
-    mot_de_passe += random.choice(string.ascii_lowercase)
+window = tk.Tk()
+window.geometry("250x200")
+window.title("Password_generator")
 
-for i in range(y):
-    mot_de_passe += random.choice(string.ascii_uppercase)
+generate_button = tk.Button(window, text="Generate a password: ", command=random_password)
+generate_button.place(x=10,y=10)
 
-for i in range(a):
-    mot_de_passe += random.choice(string.digits)
+result = tk.Label(window, text="Result: ")
+result.place(x=10, y=50 )
 
-for i in range(x):
-    mot_de_passe += random.choice(string.punctuation)
+textbox_label = tk.Label(window, text="Password length: ")
+textbox_label.place(x=10, y=100)
 
-mot_de_passe_melange = ''.join(random.sample(mot_de_passe, len(mot_de_passe)))
+textbox = tk.Entry(window)
+textbox.place(x=10, y =120)
 
-print(mot_de_passe_melange)
+window.mainloop()
 
 
